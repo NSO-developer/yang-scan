@@ -1,0 +1,13 @@
+module test2 {
+  namespace "http://cisco.com/ns/yang-scanner-test2";
+  prefix test;
+
+  import tailf-common {
+    prefix tailf;
+  }
+
+  container data {
+    tailf:callpoint clp;
+    tailf:hidden data;
+  }
+}

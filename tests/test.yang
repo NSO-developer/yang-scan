@@ -1,0 +1,29 @@
+module test {
+  namespace "http://cisco.com/ns/yang-scanner-test";
+  prefix test;
+
+  import tailf-common {
+    prefix tailf;
+  }
+
+  container data {
+    list items {
+      key index;
+
+      leaf index {
+        type int32;
+      }
+      leaf value {
+        tailf:display-when "/status/items[. = 'index']";
+        type string;
+      }
+    }
+  }
+
+  container status {
+    config false;
+    leaf-list items {
+      type int32;
+    }
+  }
+}
