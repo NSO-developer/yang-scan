@@ -16,6 +16,9 @@ are:
   such ``tailf:display-when`` statement would cause the parent node to be
   always hidden.
 
+  Note that this check works only if you use a recent version of pyang, it is
+  not supported with the version distributed with Cisco NSO.
+
   tag: ``XPATH_REF_CONFIG_FALSE``
   
 * Duplicate prefixes. Two distinct YANG modules having the same prefix is not a
@@ -44,7 +47,7 @@ and use it like
 
 ::
 
-    $ pyang --plugindir /path/to/repo -f yang-scan /modules/*.yang
+    $ pyang --plugindir /path/to/repo/yang_scan -f yang-scan /modules/*.yang
 
 If convenient, you may install the plugin to your python environment though:
 
