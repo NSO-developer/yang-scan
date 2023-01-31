@@ -4,29 +4,28 @@ YANG scanner
 Overview
 ~~~~~~~~
 
-This simple pyang_ plugin scans YANG
-modules for constructs that are likely to cause interoperability issues,
-especially when integrating with Cisco NSO.  The constructs that it looks for
-are:
+This simple pyang_ plugin scans YANG modules for constructs that are likely to
+cause interoperability issues, especially when integrating with Cisco NSO.  The
+constructs that it looks for are:
 
 * ``tailf:display-when`` used in a configuration node that refers operational
-  nodes.  Pyang checks this kind of reference for ``when`` or ``must`` statements,
-  but not for this extension statement.  Operational nodes are not part of the
-  accessible data tree when checking references from configuration node, so
-  such ``tailf:display-when`` statement would cause the parent node to be
-  always hidden.
+  nodes.  Pyang checks this kind of reference for ``when`` or ``must``
+  statements, but not for this extension statement.  Operational nodes are not
+  part of the accessible data tree when checking references from configuration
+  node, so such ``tailf:display-when`` statement would cause the parent node to
+  be always hidden.
 
   Note that this check works only if you use a recent version of pyang, it is
   not supported with the version distributed with Cisco NSO.
 
   tag: ``XPATH_REF_CONFIG_FALSE``
-  
+
 * Duplicate prefixes. Two distinct YANG modules having the same prefix is not a
   YANG standard violation, but orchestration or configuration management
   systems may not be able to work with such modules.
 
   tag: ``SCAN_DUPLICATE_PREFIXES``
-  
+
 * ``tailf:hidden`` with any argument other than ``full``.  ``tailf:hidden
   full`` hides the node from all interfaces, other arguments cause the node to
   be hidden from interactive interfaces like CLI.  This may cause
@@ -35,7 +34,7 @@ are:
   tag: ``SCAN_HIDDEN``
 
 The plugin generates a warning for each occurrence of such construct.  If
-needed, warnings can be turned off via ``--ignore-error``, see below.
+needed, warnings can be turned off via ``--ignore-error``.
 
 
 Installation and running
